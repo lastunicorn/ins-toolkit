@@ -5,7 +5,7 @@ namespace DustInTheWind.Ins.Toolkit.Web;
 
 internal sealed class QuarterlyInflationHtmlDocument : IDisposable, IAsyncDisposable
 {
-	private readonly CultureInfo cultureInfo = new("ro-RO");
+	private readonly CultureInfo cultureInfo = new("en-US");
 	private readonly Stream stream;
 
 	public QuarterlyInflationHtmlDocument(Stream stream)
@@ -33,17 +33,20 @@ internal sealed class QuarterlyInflationHtmlDocument : IDisposable, IAsyncDispos
 	{
 		HtmlNodeCollection divNodes = trNode.SelectNodes("td/div");
 
-		if (divNodes.Count == 3)
+		if (divNodes.Count == 4)
 		{
-			string yearAsString = divNodes[0].InnerText;
-			string valueAsString = divNodes[1].InnerText;
+			string quarterAsString = divNodes[0].InnerText.Trim();
+			string valueAsString = divNodes[2].InnerText.Trim();
 
-			int year = int.Parse(yearAsString, cultureInfo);
+			if (string.IsNullOrWhiteSpace(quarterAsString) && string.IsNullOrWhiteSpace(valueAsString))
+				return null;
+
+			YearQuarter yearQuarter = YearQuarter.Parse(quarterAsString);
 			decimal value = decimal.Parse(valueAsString, cultureInfo) - 100;
 
 			QuarterlyInflationRecord quarterlyInflationRecord = new()
 			{
-				Quarter = year,
+				Quarter = yearQuarter,
 				Value = value
 			};
 
