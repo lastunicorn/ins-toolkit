@@ -4,8 +4,10 @@ internal static class Program
 {
 	private static async Task Main(string[] args)
 	{
+		// Uncomment the one you want to run.
+		
 		//await DisplayYearlyInflation();
-		await DisplayQuarterlyInflation();
+		//await DisplayQuarterlyInflation();
 	}
 
 	private static async Task DisplayYearlyInflation()
