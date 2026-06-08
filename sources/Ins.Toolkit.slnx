@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/Common/">
+    <File Path="Directory.Build.props" />
+  </Folder>
+  <Project Path="Ins.Toolkit.Demo/Ins.Toolkit.Demo.csproj" />
+  <Project Path="Ins.Toolkit\Ins.Toolkit.csproj" />
+</Solution>
