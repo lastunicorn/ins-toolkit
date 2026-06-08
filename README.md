@@ -1,6 +1,6 @@
 # INS Toolkit
 
-`INS Toolkit` is a .NET library that helps working with files and data from the INS .
+`INS Toolkit` is a .NET library that helps working with files and data from INS .
 
 INS is the Romanian National Statistics Institute (Institutul Național de Statistică)
 
@@ -28,7 +28,7 @@ dotnet add package DustInTheWind.Ins.Toolkit
 
 ## Quick Start
 
-Download inflation data per year and per trimester from the INS website.
+Download inflation data per year and per quarter from the INS website.
 
 The data is found only in a HTML web page, no computer friendly access to it. The approach is to read the HTML page and extract the data.
 
@@ -39,7 +39,7 @@ The data is found only in a HTML web page, no computer friendly access to it. Th
 3. OR access directly the URL:
    - https://insse.ro/cms/ro/content/ipc%E2%80%93serie-de-date-anuala
 
-### Manual (series by trimester)
+### Manual (series by quarter)
 
 1. Open https://insse.ro web page in a browser.
 2. "Date Statistice" -> "Serii de date" -> "IPC - serii de date" -> "IPC - serie de date trimestriala"

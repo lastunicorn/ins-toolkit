@@ -8,4 +8,8 @@
 		<RootNamespace>DustInTheWind.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\Ins.Toolkit\Ins.Toolkit.csproj" />
+	</ItemGroup>
+
 </Project>
