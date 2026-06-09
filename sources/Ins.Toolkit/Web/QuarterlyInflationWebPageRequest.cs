@@ -4,11 +4,11 @@ namespace DustInTheWind.Ins.Toolkit.Web;
 
 internal class QuarterlyInflationWebPageRequest
 {
-	private readonly string url;
+	private readonly Uri uri;
 
-	public QuarterlyInflationWebPageRequest(string url)
+	public QuarterlyInflationWebPageRequest(Uri uri)
 	{
-		this.url = url ?? throw new ArgumentNullException(nameof(url));
+		this.uri = uri ?? throw new ArgumentNullException(nameof(uri));
 	}
 
 	public async Task<QuarterlyInflationHtmlDocument> Execute()
@@ -20,7 +20,7 @@ internal class QuarterlyInflationWebPageRequest
 			AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
 		});
 
-		HttpRequestMessage httpRequestMessage = new(HttpMethod.Get, url);
+		HttpRequestMessage httpRequestMessage = new(HttpMethod.Get, uri);
 
 		httpRequestMessage.Headers.Add("Host", "insse.ro");
 		httpRequestMessage.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0");

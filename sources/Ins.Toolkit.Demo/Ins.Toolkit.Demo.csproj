@@ -12,4 +12,8 @@
 	  <ProjectReference Include="..\Ins.Toolkit\Ins.Toolkit.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <PackageReference Include="ConsoleTools.Controls.Tables" Version="1.2.1" />
+	</ItemGroup>
+
 </Project>
