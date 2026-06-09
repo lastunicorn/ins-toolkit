@@ -1,6 +1,12 @@
 INS Toolkit
 ================================================================================
 
+
+v1.1.0
+--------------------------------------------------------------------------------
+[new   ] Added URL as parameter for the web page classes.
+
+
 v1.0.0
 --------------------------------------------------------------------------------
-[new] Added support to download inflation values from 'insse.ro' webpage.
+[new   ] Added support to download inflation values from 'insse.ro' webpage.
