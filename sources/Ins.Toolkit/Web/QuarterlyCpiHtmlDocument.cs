@@ -3,17 +3,17 @@ using HtmlAgilityPack;
 
 namespace DustInTheWind.Ins.Toolkit.Web;
 
-internal sealed class QuarterlyInflationHtmlDocument : IDisposable, IAsyncDisposable
+internal sealed class QuarterlyCpiHtmlDocument : IDisposable, IAsyncDisposable
 {
 	private readonly CultureInfo cultureInfo = new("en-US");
 	private readonly Stream stream;
 
-	public QuarterlyInflationHtmlDocument(Stream stream)
+	public QuarterlyCpiHtmlDocument(Stream stream)
 	{
 		this.stream = stream ?? throw new ArgumentNullException(nameof(stream));
 	}
 
-	public IEnumerable<QuarterlyInflationRecord> EnumerateInflationRecords()
+	public IEnumerable<QuarterlyInflationRecord> EnumerateCpiRecords()
 	{
 		HtmlDocument htmlDocument = new();
 		htmlDocument.Load(stream);
@@ -22,14 +22,14 @@ internal sealed class QuarterlyInflationHtmlDocument : IDisposable, IAsyncDispos
 
 		foreach (HtmlNode trNode in trNodes)
 		{
-			QuarterlyInflationRecord yearlyInflationRecord = GetInflationRecord(trNode);
+			QuarterlyInflationRecord yearlyInflationRecord = GetCpiRecord(trNode);
 
 			if (yearlyInflationRecord != null)
 				yield return yearlyInflationRecord;
 		}
 	}
 
-	private QuarterlyInflationRecord GetInflationRecord(HtmlNode trNode)
+	private QuarterlyInflationRecord GetCpiRecord(HtmlNode trNode)
 	{
 		HtmlNodeCollection divNodes = trNode.SelectNodes("td/div");
 

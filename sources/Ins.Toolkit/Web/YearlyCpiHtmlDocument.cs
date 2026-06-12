@@ -3,12 +3,12 @@ using HtmlAgilityPack;
 
 namespace DustInTheWind.Ins.Toolkit.Web;
 
-internal sealed class YearlyInflationHtmlDocument : IDisposable, IAsyncDisposable
+internal sealed class YearlyCpiHtmlDocument : IDisposable, IAsyncDisposable
 {
     private readonly CultureInfo cultureInfo = new("ro-RO");
     private readonly Stream stream;
 
-    public YearlyInflationHtmlDocument(Stream stream)
+    public YearlyCpiHtmlDocument(Stream stream)
     {
         this.stream = stream ?? throw new ArgumentNullException(nameof(stream));
     }

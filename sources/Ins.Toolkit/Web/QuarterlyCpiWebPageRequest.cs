@@ -2,16 +2,16 @@ using System.Net;
 
 namespace DustInTheWind.Ins.Toolkit.Web;
 
-internal class QuarterlyInflationWebPageRequest
+internal class QuarterlyCpiWebPageRequest
 {
 	private readonly Uri uri;
 
-	public QuarterlyInflationWebPageRequest(Uri uri)
+	public QuarterlyCpiWebPageRequest(Uri uri)
 	{
 		this.uri = uri ?? throw new ArgumentNullException(nameof(uri));
 	}
 
-	public async Task<QuarterlyInflationHtmlDocument> Execute()
+	public async Task<QuarterlyCpiHtmlDocument> Execute()
 	{
 		ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
 
@@ -45,6 +45,6 @@ internal class QuarterlyInflationWebPageRequest
 			throw new Exception($"Failed to retrieve the inflation values from the web. Status code: {httpResponseMessage.StatusCode}");
 
 		Stream stream = await httpResponseMessage.Content.ReadAsStreamAsync();
-		return new QuarterlyInflationHtmlDocument(stream);
+		return new QuarterlyCpiHtmlDocument(stream);
 	}
 }

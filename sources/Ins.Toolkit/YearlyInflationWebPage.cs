@@ -18,10 +18,10 @@ public class YearlyInflationWebPage
 
 	public async IAsyncEnumerable<YearlyInflationRecord> EnumerateInflationRecords()
 	{
-		YearlyInflationWebPageRequest inflationWebRequest = new(uri);
-		YearlyInflationHtmlDocument inflationHtmlDocument = await inflationWebRequest.Execute();
+		YearlyCpiWebPageRequest cpiWebRequest = new(uri);
+		YearlyCpiHtmlDocument cpiHtmlDocument = await cpiWebRequest.Execute();
 
-		foreach (YearlyInflationRecord inflationRecord in inflationHtmlDocument.EnumerateInflationRecords())
+		foreach (YearlyInflationRecord inflationRecord in cpiHtmlDocument.EnumerateInflationRecords())
 			yield return inflationRecord;
 	}
 }

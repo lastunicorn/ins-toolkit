@@ -2,16 +2,16 @@
 
 namespace DustInTheWind.Ins.Toolkit.Web;
 
-internal class YearlyInflationWebPageRequest
+internal class YearlyCpiWebPageRequest
 {
     private readonly Uri uri;
 
-    public YearlyInflationWebPageRequest(Uri uri)
+    public YearlyCpiWebPageRequest(Uri uri)
     {
         this.uri = uri ?? throw new ArgumentNullException(nameof(uri));
     }
 
-    public async Task<YearlyInflationHtmlDocument> Execute()
+    public async Task<YearlyCpiHtmlDocument> Execute()
     {
         ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
 
@@ -45,6 +45,6 @@ internal class YearlyInflationWebPageRequest
             throw new Exception($"Failed to retrieve the inflation values from the web. Status code: {httpResponseMessage.StatusCode}");
 
         Stream stream = await httpResponseMessage.Content.ReadAsStreamAsync();
-        return new YearlyInflationHtmlDocument(stream);
+        return new YearlyCpiHtmlDocument(stream);
     }
 }
