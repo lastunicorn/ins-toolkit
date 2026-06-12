@@ -5,8 +5,8 @@
         <Product>INS Toolkit</Product>
         <Copyright>Copyright © 2026 Dust in the Wind</Copyright>
         <Version>0.0.0.0</Version>
-        <Description>A library that helps working with files and data from INS.</Description>
-        <PackageTags>ins csharp inflation statistics</PackageTags>
+        <Description>A library that helps working with files and data from INS (Romanian National Statistics Institute).</Description>
+        <PackageTags>ins inflation statistics</PackageTags>
         <RepositoryType>git</RepositoryType>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
         <PackageReadmeFile>README.md</PackageReadmeFile>
