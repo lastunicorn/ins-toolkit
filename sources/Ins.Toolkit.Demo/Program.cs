@@ -6,10 +6,12 @@ internal static class Program
 {
 	private static async Task Main(string[] args)
 	{
-		//YearlyCpiUseCase useCase = new();
-		//QuarterlyCpiUseCase useCase = new();
-		YearlyAverageWageUseCase useCase = new();
-		
-		await useCase.Execute();
+		// =======================================================
+		// Uncomment the use case you want to run.
+		// =======================================================
+
+		//await new YearlyCpiUseCase().Execute();
+		//await new QuarterlyCpiUseCase().Execute();
+		await new YearlyAverageWageUseCase().Execute();
 	}
 }

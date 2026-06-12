@@ -2,6 +2,14 @@ INS Toolkit
 ================================================================================
 
 
+v1.2.0 (breaking change)
+--------------------------------------------------------------------------------
+[new   ] Added logic to parse the yearly average wage web page.
+[change] Renamed all classes to use "Cpi" (Consumer Prioce Index) instead of
+         "Inflation": YearlyInflationWebPage, QuarterlyInflationWebPage, etc.
+         (breaking change)
+
+
 v1.1.0
 --------------------------------------------------------------------------------
 [new   ] Added URL as parameter for the web page classes.

@@ -7,24 +7,24 @@ internal class QuarterlyCpiUseCase
 {
 	public async Task Execute()
 	{
-		QuarterlyInflationWebPage quarterlyInflationWebPage = new();
+		QuarterlyCpiWebPage webPage = new();
 
-		IAsyncEnumerable<QuarterlyInflationRecord> inflationRecords = quarterlyInflationWebPage.EnumerateInflationRecords();
-		await Display(inflationRecords);
+		IAsyncEnumerable<QuarterlyCpiRecord> records = webPage.EnumerateRecords();
+		await Display(records);
 	}
 
-	private static async Task Display(IAsyncEnumerable<QuarterlyInflationRecord> inflationRecords)
+	private static async Task Display(IAsyncEnumerable<QuarterlyCpiRecord> records)
 	{
 		DataGrid dataGrid = new()
 		{
-			Title = "Quarterly Inflation"
+			Title = "Quarterly CPI"
 		};
 
 		dataGrid.Columns.Add("Quarter");
 		dataGrid.Columns.Add("Value %", HorizontalAlignment.Right);
 
-		await foreach (QuarterlyInflationRecord inflationRecord in inflationRecords)
-			dataGrid.Rows.Add(inflationRecord.Quarter, inflationRecord.Value);
+		await foreach (QuarterlyCpiRecord record in records)
+			dataGrid.Rows.Add(record.Quarter, record.Value);
 
 		dataGrid.Display();
 	}

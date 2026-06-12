@@ -13,7 +13,7 @@ internal sealed class QuarterlyCpiHtmlDocument : IDisposable, IAsyncDisposable
 		this.stream = stream ?? throw new ArgumentNullException(nameof(stream));
 	}
 
-	public IEnumerable<QuarterlyInflationRecord> EnumerateCpiRecords()
+	public IEnumerable<QuarterlyCpiRecord> EnumerateRecords()
 	{
 		HtmlDocument htmlDocument = new();
 		htmlDocument.Load(stream);
@@ -22,14 +22,14 @@ internal sealed class QuarterlyCpiHtmlDocument : IDisposable, IAsyncDisposable
 
 		foreach (HtmlNode trNode in trNodes)
 		{
-			QuarterlyInflationRecord yearlyInflationRecord = GetCpiRecord(trNode);
+			QuarterlyCpiRecord yearlyCpiRecord = GetCpiRecord(trNode);
 
-			if (yearlyInflationRecord != null)
-				yield return yearlyInflationRecord;
+			if (yearlyCpiRecord != null)
+				yield return yearlyCpiRecord;
 		}
 	}
 
-	private QuarterlyInflationRecord GetCpiRecord(HtmlNode trNode)
+	private QuarterlyCpiRecord GetCpiRecord(HtmlNode trNode)
 	{
 		HtmlNodeCollection divNodes = trNode.SelectNodes("td/div");
 
@@ -44,13 +44,13 @@ internal sealed class QuarterlyCpiHtmlDocument : IDisposable, IAsyncDisposable
 			YearQuarter yearQuarter = YearQuarter.Parse(quarterAsString);
 			decimal value = decimal.Parse(valueAsString, cultureInfo) - 100;
 
-			QuarterlyInflationRecord quarterlyInflationRecord = new()
+			QuarterlyCpiRecord quarterlyCpiRecord = new()
 			{
 				Quarter = yearQuarter,
 				Value = value
 			};
 
-			return quarterlyInflationRecord;
+			return quarterlyCpiRecord;
 		}
 
 		return null;

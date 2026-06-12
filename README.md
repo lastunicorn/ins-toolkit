@@ -8,8 +8,6 @@ INS is the Romanian National Statistics Institute (Institutul Național de Stati
 
 - https://insse.ro
 
-The package is published as `DustInTheWind.Ins.Toolkit`.
-
 ## Installation
 
 Package Manager:
@@ -28,61 +26,101 @@ dotnet add package DustInTheWind.Ins.Toolkit
 
 - Library target framework: `.NET 8.0` (`net8.0`)
 
-## Quick Start (Yearly Inflation)
+## CPI (Yearly)
 
-Download inflation data per year and per quarter from the INS website.
+CPI = Consumer Price Index
 
-The data is found only in a HTML web page, no computer friendly access to it. The approach is to read the HTML page and extract the data.
-
-### a) Manual (by year)
+### a) In the Browser
 
 1. Open https://insse.ro web page in a browser.
-2. "Date Statistice" -> "Serii de date" -> "IPC - serii de date" -> "IPC - serie de date anuala"
-3. OR access directly the URL:
+2. Navigate to "Date Statistice" -> "Serii de date" -> "IPC - serii de date" -> "IPC - serie de date anuala"
+
+OR
+
+1. Access directly the URL:
    - https://insse.ro/cms/ro/content/ipc%E2%80%93serie-de-date-anuala
 
-### b) Parse the web page
+### b) Parse the Web Page
+
+There is no computer friendly access to the data, so, the only approach is to read the HTML page and extract the data from there.
 
 ```csharp
 using DustInTheWind.Ins.Toolkit;
 
-YearlyInflationWebPage yearlyInflationWebPage = new();
-IAsyncEnumerable<YearlyInflationRecord> inflationRecords = yearlyInflationWebPage.EnumerateInflationRecords();
+YearlyCpiWebPage webPage = new();
+IAsyncEnumerable<YearlyCpiRecord> records = webPage.EnumerateRecords();
 
-await foreach (YearlyInflationRecord inflationRecord in inflationRecords)
+await foreach (YearlyCpiRecord record in records)
 {
     ...
 }
 ```
 
-## Quick Start (Quarterly Inflation)
+## CPI (Quarterly)
+
+CPI = Consumer Price Index
 
 ### a) Manual (by quarter)
 
 1. Open https://insse.ro web page in a browser.
-2. "Date Statistice" -> "Serii de date" -> "IPC - serii de date" -> "IPC - serie de date trimestriala"
-3. OR access directly the URL:
+2. Navigate to "Date Statistice" -> "Serii de date" -> "IPC - serii de date" -> "IPC - serie de date trimestriala"
+
+OR
+
+1. access directly the URL:
    - https://insse.ro/cms/ro/content/ipc-serie-de-date-trimestriala
 
-### b) Parse the web page
+### b) Parse the Web Page
+
+There is no computer friendly access to the data, so, the only approach is to read the HTML page and extract the data from there.
 
 ```csharp
 using DustInTheWind.Ins.Toolkit;
 
-QuarterlyInflationWebPage quarterlyInflationWebPage = new();
-IAsyncEnumerable<QuarterlyInflationRecord> inflationRecords = quarterlyInflationWebPage.EnumerateInflationRecords();
+QuarterlyCpiWebPage webPage = new();
+IAsyncEnumerable<QuarterlyCpiRecord> records = webPage.EnumerateRecords();
 
-await foreach (QuarterlyInflationRecord inflationRecord in inflationRecords)
+await foreach (QuarterlyCpiRecord record in records)
 {
     ...
 }
 ```
+
+## Average Wage (Yearly)
+
+### a) Manual (by quarter)
+
+1. Open https://insse.ro web page in a browser.
+2. Navigate to "Date Statistice" -> "Serii de date" -> "Câștiguri - serii de date" -> "Câștiguri salariale din 1938 - serie anuală"
+
+OR
+
+1. access directly the URL:
+   - https://insse.ro/cms/ro/content/c%C3%A2%C8%99tiguri-salariale-din-1938-serie-anual%C4%83-0
+
+### b) Parse the Web Page
+
+There is no computer friendly access to the data, so, the only approach is to read the HTML page and extract the data from there.
+
+```csharp
+using DustInTheWind.Ins.Toolkit;
+
+YearlyAverageWageWebPage webPage = new();
+IAsyncEnumerable<YearlyAverageWageRecord> records = webPage.EnumerateRecords();
+
+await foreach (YearlyAverageWageRecord record in records)
+{
+    ...
+}
+```
+
+## 
 
 ## Demo Project
 
 The repository includes a sample CLI project in `sources/Ins.Toolkit.Demo` that demonstrates:
 
-- download and parse the INS web page
+- download and and extract data from the INS web pages
 - printing parsed data.
 
 You can use this project as a reference implementation for your own importer/exporter tools.

@@ -7,24 +7,24 @@ internal class YearlyCpiUseCase
 {
 	public async Task Execute()
 	{
-		YearlyInflationWebPage yearlyInflationWebPage = new();
+		YearlyCpiWebPage webPage = new();
 
-		IAsyncEnumerable<YearlyInflationRecord> inflationRecords = yearlyInflationWebPage.EnumerateInflationRecords();
-		await Display(inflationRecords);
+		IAsyncEnumerable<YearlyCpiRecord> records = webPage.EnumerateRecords();
+		await Display(records);
 	}
 
-	private static async Task Display(IAsyncEnumerable<YearlyInflationRecord> inflationRecords)
+	private static async Task Display(IAsyncEnumerable<YearlyCpiRecord> records)
 	{
 		DataGrid dataGrid = new()
 		{
-			Title = "Yearly Inflation"
+			Title = "Yearly CPI"
 		};
 
 		dataGrid.Columns.Add("Year");
 		dataGrid.Columns.Add("Value %", HorizontalAlignment.Right);
 
-		await foreach (YearlyInflationRecord inflationRecord in inflationRecords)
-			dataGrid.Rows.Add(inflationRecord.Year, inflationRecord.Value);
+		await foreach (YearlyCpiRecord record in records)
+			dataGrid.Rows.Add(record.Year, record.Value);
 
 		dataGrid.Display();
 	}

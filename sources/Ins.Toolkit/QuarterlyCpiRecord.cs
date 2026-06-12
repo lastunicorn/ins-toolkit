@@ -1,6 +1,6 @@
 namespace DustInTheWind.Ins.Toolkit;
 
-public class QuarterlyInflationRecord
+public class QuarterlyCpiRecord
 {
 	public YearQuarter Quarter { get; set; }
 

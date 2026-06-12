@@ -13,7 +13,7 @@ internal sealed class YearlyCpiHtmlDocument : IDisposable, IAsyncDisposable
         this.stream = stream ?? throw new ArgumentNullException(nameof(stream));
     }
 
-    public IEnumerable<YearlyInflationRecord> EnumerateInflationRecords()
+    public IEnumerable<YearlyCpiRecord> EnumerateRecords()
     {
         HtmlDocument htmlDocument = new();
         htmlDocument.Load(stream);
@@ -22,14 +22,14 @@ internal sealed class YearlyCpiHtmlDocument : IDisposable, IAsyncDisposable
 
         foreach (HtmlNode trNode in trNodes)
         {
-            YearlyInflationRecord yearlyInflationRecord = GetInflationRecord(trNode);
+            YearlyCpiRecord yearlyCpiRecord = GetInflationRecord(trNode);
 
-            if (yearlyInflationRecord != null)
-                yield return yearlyInflationRecord;
+            if (yearlyCpiRecord != null)
+                yield return yearlyCpiRecord;
         }
     }
 
-    private YearlyInflationRecord GetInflationRecord(HtmlNode trNode)
+    private YearlyCpiRecord GetInflationRecord(HtmlNode trNode)
     {
         HtmlNodeCollection divNodes = trNode.SelectNodes("td/div");
 
@@ -41,13 +41,13 @@ internal sealed class YearlyCpiHtmlDocument : IDisposable, IAsyncDisposable
             int year = int.Parse(yearAsString, cultureInfo);
             decimal value = decimal.Parse(valueAsString, cultureInfo) - 100;
 
-            YearlyInflationRecord yearlyInflationRecord = new()
+            YearlyCpiRecord yearlyCpiRecord = new()
             {
                 Year = year,
                 Value = value
             };
 
-            return yearlyInflationRecord;
+            return yearlyCpiRecord;
         }
 
         return null;

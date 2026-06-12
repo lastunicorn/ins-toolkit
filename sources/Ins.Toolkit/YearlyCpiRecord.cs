@@ -1,6 +1,6 @@
 ﻿namespace DustInTheWind.Ins.Toolkit;
 
-public class YearlyInflationRecord
+public class YearlyCpiRecord
 {
     public int Year { get; set; }
 
