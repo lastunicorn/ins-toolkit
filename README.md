@@ -1,5 +1,7 @@
 # INS Toolkit
 
+[![GitHub Repo](https://img.shields.io/badge/github-repo-blue?logo=github)](https://github.com/lastunicorn/ins-toolkit) [![GitHub Build](https://img.shields.io/github/actions/workflow/status/lastunicorn/ins-toolkit/build-master.yml?logo=github)](https://github.com/lastunicorn/ins-toolkit/actions/workflows/build-master.yml) [![NuGet Version](https://img.shields.io/nuget/v/DustInTheWind.Ins.Toolkit?logo=nuget)](https://www.nuget.org/packages/DustInTheWind.Ins.Toolkit) [![NuGet Downloads](https://img.shields.io/nuget/dt/DustInTheWind.Ins.Toolkit?logo=nuget)](https://www.nuget.org/packages/DustInTheWind.Ins.Toolkit)
+
 `INS Toolkit` is a .NET library that helps working with files and data from INS.
 
 INS is the Romanian National Statistics Institute (Institutul Național de Statistică)
