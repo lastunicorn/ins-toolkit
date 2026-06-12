@@ -9,11 +9,11 @@ internal class YearlyCpiUseCase
 	{
 		YearlyCpiWebPage webPage = new();
 
-		IAsyncEnumerable<YearlyCpiRecord> records = webPage.EnumerateRecords();
-		await Display(records);
+		IEnumerable<YearlyCpiRecord> records = await webPage.EnumerateRecords();
+		Display(records);
 	}
 
-	private static async Task Display(IAsyncEnumerable<YearlyCpiRecord> records)
+	private static void Display(IEnumerable<YearlyCpiRecord> records)
 	{
 		DataGrid dataGrid = new()
 		{
@@ -23,7 +23,7 @@ internal class YearlyCpiUseCase
 		dataGrid.Columns.Add("Year");
 		dataGrid.Columns.Add("Value %", HorizontalAlignment.Right);
 
-		await foreach (YearlyCpiRecord record in records)
+		foreach (YearlyCpiRecord record in records)
 			dataGrid.Rows.Add(record.Year, record.Value);
 
 		dataGrid.Display();

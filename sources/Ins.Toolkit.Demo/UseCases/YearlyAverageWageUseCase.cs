@@ -9,11 +9,11 @@ internal class YearlyAverageWageUseCase
 	{
 		YearlyAverageWageWebPage webpage = new();
 
-		IAsyncEnumerable<YearlyAverageWageRecord> records = webpage.EnumerateRecords();
-		await Display(records);
+		IEnumerable<YearlyAverageWageRecord> records = await webpage.EnumerateRecords();
+		Display(records);
 	}
 
-	private static async Task Display(IAsyncEnumerable<YearlyAverageWageRecord> records)
+	private static void Display(IEnumerable<YearlyAverageWageRecord> records)
 	{
 		DataGrid dataGrid = new()
 		{
@@ -24,7 +24,7 @@ internal class YearlyAverageWageUseCase
 		dataGrid.Columns.Add("Gross", HorizontalAlignment.Right);
 		dataGrid.Columns.Add("Net", HorizontalAlignment.Right);
 
-		await foreach (YearlyAverageWageRecord record in records)
+		foreach (YearlyAverageWageRecord record in records)
 			dataGrid.Rows.Add(record.Year, record.AverageGrossWage, record.AverageNetWage);
 
 		dataGrid.Display();

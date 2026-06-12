@@ -48,9 +48,9 @@ There is no computer friendly access to the data, so, the only approach is to re
 using DustInTheWind.Ins.Toolkit;
 
 YearlyCpiWebPage webPage = new();
-IAsyncEnumerable<YearlyCpiRecord> records = webPage.EnumerateRecords();
+IEnumerable<YearlyCpiRecord> records = await webPage.EnumerateRecords();
 
-await foreach (YearlyCpiRecord record in records)
+foreach (YearlyCpiRecord record in records)
 {
     ...
 }
@@ -60,7 +60,7 @@ await foreach (YearlyCpiRecord record in records)
 
 CPI = Consumer Price Index
 
-### a) Manual (by quarter)
+### a) In the Browser
 
 1. Open https://insse.ro web page in a browser.
 2. Navigate to "Date Statistice" -> "Serii de date" -> "IPC - serii de date" -> "IPC - serie de date trimestriala"
@@ -78,9 +78,9 @@ There is no computer friendly access to the data, so, the only approach is to re
 using DustInTheWind.Ins.Toolkit;
 
 QuarterlyCpiWebPage webPage = new();
-IAsyncEnumerable<QuarterlyCpiRecord> records = webPage.EnumerateRecords();
+IEnumerable<QuarterlyCpiRecord> records = await webPage.EnumerateRecords();
 
-await foreach (QuarterlyCpiRecord record in records)
+foreach (QuarterlyCpiRecord record in records)
 {
     ...
 }
@@ -88,7 +88,7 @@ await foreach (QuarterlyCpiRecord record in records)
 
 ## Average Wage (Yearly)
 
-### a) Manual (by quarter)
+### a) In the Browser
 
 1. Open https://insse.ro web page in a browser.
 2. Navigate to "Date Statistice" -> "Serii de date" -> "Câștiguri - serii de date" -> "Câștiguri salariale din 1938 - serie anuală"
@@ -106,15 +106,41 @@ There is no computer friendly access to the data, so, the only approach is to re
 using DustInTheWind.Ins.Toolkit;
 
 YearlyAverageWageWebPage webPage = new();
-IAsyncEnumerable<YearlyAverageWageRecord> records = webPage.EnumerateRecords();
+IEnumerable<YearlyAverageWageRecord> records = await webPage.EnumerateRecords();
 
-await foreach (YearlyAverageWageRecord record in records)
+foreach (YearlyAverageWageRecord record in records)
 {
     ...
 }
 ```
 
-## 
+## Average Wage (Monthly)
+
+### a) In the Browser
+
+1. Open https://insse.ro web page in a browser.
+2. Navigate to "Date Statistice" -> "Serii de date" -> "Câștiguri - serii de date" -> "Câștiguri salariale - din 1991, serie lunară"
+
+OR
+
+1. access directly the URL:
+   - https://insse.ro/cms/ro/content/c%C3%A2%C8%99tiguri-salariale-din-1991-serie-lunar%C4%83
+
+### b) Parse the Web Page
+
+There is no computer friendly access to the data, so, the only approach is to read the HTML page and extract the data from there.
+
+```csharp
+using DustInTheWind.Ins.Toolkit;
+
+MonthlyAverageWageWebPage webpage = new();
+IEnumerable<MonthlyAverageWageRecord> records = await webpage.EnumerateRecords();
+
+foreach (MonthlyAverageWageRecord record in records)
+{
+    ...
+}
+```
 
 ## Demo Project
 

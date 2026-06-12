@@ -16,12 +16,11 @@ public class QuarterlyCpiWebPage
 		this.uri = uri ?? throw new ArgumentNullException(nameof(uri));
 	}
 	
-	public async IAsyncEnumerable<QuarterlyCpiRecord> EnumerateRecords()
+	public async Task<IEnumerable<QuarterlyCpiRecord>> EnumerateRecords()
 	{
 		QuarterlyCpiWebPageRequest quarterlyCpiWebRequest = new(uri);
 		QuarterlyCpiHtmlDocument quarterlyCpiHtmlDocument = await quarterlyCpiWebRequest.Execute();
 
-		foreach (QuarterlyCpiRecord quarterlyCpiRecord in quarterlyCpiHtmlDocument.EnumerateRecords())
-			yield return quarterlyCpiRecord;
+		return quarterlyCpiHtmlDocument.EnumerateRecords();
 	}
 }

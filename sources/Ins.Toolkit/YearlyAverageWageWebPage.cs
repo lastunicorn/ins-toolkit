@@ -16,12 +16,11 @@ public class YearlyAverageWageWebPage
 		this.uri = uri ?? throw new ArgumentNullException(nameof(uri));
 	}
 
-	public async IAsyncEnumerable<YearlyAverageWageRecord> EnumerateRecords()
+	public async Task<IEnumerable<YearlyAverageWageRecord>> EnumerateRecords()
 	{
 		YearlyAverageWageWebPageRequest webPageRequest = new(uri);
 		YearlyAverageWageHtmlDocument htmlDocument = await webPageRequest.Execute();
 
-		foreach (YearlyAverageWageRecord record in htmlDocument.EnumerateRecords())
-			yield return record;
+		return htmlDocument.EnumerateRecords();
 	}
 }

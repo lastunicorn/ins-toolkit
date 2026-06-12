@@ -16,12 +16,11 @@ public class YearlyCpiWebPage
 		this.uri = uri ?? throw new ArgumentNullException(nameof(uri));
 	}
 
-	public async IAsyncEnumerable<YearlyCpiRecord> EnumerateRecords()
+	public async Task<IEnumerable<YearlyCpiRecord>> EnumerateRecords()
 	{
 		YearlyCpiWebPageRequest yearlyCpiWebPageRequest = new(uri);
 		YearlyCpiHtmlDocument yearlyCpiHtmlDocument = await yearlyCpiWebPageRequest.Execute();
 
-		foreach (YearlyCpiRecord yearlyCpiRecord in yearlyCpiHtmlDocument.EnumerateRecords())
-			yield return yearlyCpiRecord;
+		return yearlyCpiHtmlDocument.EnumerateRecords();
 	}
 }
