@@ -26,9 +26,19 @@ dotnet add package DustInTheWind.Ins.Toolkit
 
 - Library target framework: `.NET 8.0` (`net8.0`)
 
-## CPI (Yearly)
+## Vocabulary
 
-CPI = Consumer Price Index
+**CPI**
+
+The Consumer Price Index (CPI) presents the percentage change in prices that consumers pay for goods and services.
+
+https://www.investopedia.com/terms/c/consumerpriceindex.asp
+
+Romanian:
+
+- Indicele Prețurilor de Consum (IPC)
+
+## CPI (Yearly)
 
 ### a) In the Browser
 
@@ -55,6 +65,10 @@ foreach (YearlyCpiRecord record in records)
     ...
 }
 ```
+
+> **Note**
+>
+> Because the number format used by the INS web page is inconsistent (sometimes the decimal is marked with ".", sometimes with ",") we recommend to thoroughly verify the imported values before using them.
 
 ## CPI (Quarterly)
 
@@ -85,6 +99,10 @@ foreach (QuarterlyCpiRecord record in records)
     ...
 }
 ```
+
+> **Note**
+>
+> Because the number format used by the INS web page is inconsistent (sometimes the decimal is marked with ".", sometimes with ",") we recommend to thoroughly verify the imported values before using them.
 
 ## Average Wage (Yearly)
 

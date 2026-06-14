@@ -1,11 +1,9 @@
-using System.Globalization;
 using HtmlAgilityPack;
 
 namespace DustInTheWind.Ins.Toolkit.Web;
 
 internal sealed class QuarterlyCpiHtmlDocument : IDisposable, IAsyncDisposable
 {
-	private readonly CultureInfo cultureInfo = new("en-US");
 	private readonly Stream stream;
 
 	public QuarterlyCpiHtmlDocument(Stream stream)
@@ -42,7 +40,7 @@ internal sealed class QuarterlyCpiHtmlDocument : IDisposable, IAsyncDisposable
 				return null;
 
 			YearQuarter yearQuarter = YearQuarter.Parse(quarterAsString);
-			decimal value = decimal.Parse(valueAsString, cultureInfo) - 100;
+			decimal value = FlexibleDecimal.Parse(valueAsString);
 
 			QuarterlyCpiRecord quarterlyCpiRecord = new()
 			{

@@ -1,9 +1,15 @@
 INS Toolkit
 ================================================================================
 
+v1.3.0
+--------------------------------------------------------------------------------
+[fix   ] Fixed parsing bug of numbers randomly using "," ot "."
+[fix   ] Fixed CPI logic wrongfully returning inflation rate values instead of
+         CPI values.
+
 v1.2.0 (breaking change)
 --------------------------------------------------------------------------------
-[change] Renamed all classes to use "Cpi" (Consumer Prioce Index) instead of
+[change] Renamed all classes to use "Cpi" (Consumer Price Index) instead of
          "Inflation": YearlyInflationWebPage, QuarterlyInflationWebPage, etc.
          (breaking change)
 [new   ] Added logic to parse the yearly and montly average wage web page from
