@@ -1,7 +1,6 @@
-using System.Globalization;
 using HtmlAgilityPack;
 
-namespace DustInTheWind.Ins.Toolkit.Web;
+namespace DustInTheWind.Ins.Toolkit.Web.YearlyAverageWage;
 
 internal class YearlyAverageWageHtmlDocument : IDisposable, IAsyncDisposable
 {

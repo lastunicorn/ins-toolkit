@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using HtmlAgilityPack;
 
-namespace DustInTheWind.Ins.Toolkit.Web;
+namespace DustInTheWind.Ins.Toolkit.Web.YearlyCpi;
 
 internal sealed class YearlyCpiHtmlDocument : IDisposable, IAsyncDisposable
 {
@@ -21,14 +21,14 @@ internal sealed class YearlyCpiHtmlDocument : IDisposable, IAsyncDisposable
 
 		foreach (HtmlNode trNode in trNodes)
 		{
-			YearlyCpiRecord yearlyCpiRecord = GetInflationRecord(trNode);
+			YearlyCpiRecord yearlyCpiRecord = GetCpi(trNode);
 
 			if (yearlyCpiRecord != null)
 				yield return yearlyCpiRecord;
 		}
 	}
 
-	private YearlyCpiRecord GetInflationRecord(HtmlNode trNode)
+	private YearlyCpiRecord GetCpi(HtmlNode trNode)
 	{
 		HtmlNodeCollection divNodes = trNode.SelectNodes("td/div");
 

@@ -1,6 +1,6 @@
 using HtmlAgilityPack;
 
-namespace DustInTheWind.Ins.Toolkit.Web;
+namespace DustInTheWind.Ins.Toolkit.Web.QuarterlyCpi;
 
 internal sealed class QuarterlyCpiHtmlDocument : IDisposable, IAsyncDisposable
 {

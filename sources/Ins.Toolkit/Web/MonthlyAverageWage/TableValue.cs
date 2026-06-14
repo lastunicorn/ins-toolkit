@@ -1,4 +1,4 @@
-namespace DustInTheWind.Ins.Toolkit.Web;
+namespace DustInTheWind.Ins.Toolkit.Web.MonthlyAverageWage;
 
 internal class TableValue
 {

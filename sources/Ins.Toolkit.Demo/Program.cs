@@ -11,7 +11,7 @@ internal static class Program
 		// =======================================================
 
 		//await new YearlyCpiUseCase().Execute();
-		//await new QuarterlyCpiUseCase().Execute();
+		await new QuarterlyCpiUseCase().Execute();
 		//await new YearlyAverageWageUseCase().Execute();
 		//await new MonthlyAverageWageUseCase().Execute();
 	}

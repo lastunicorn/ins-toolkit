@@ -7,7 +7,7 @@ internal class YearlyCpiUseCase
 {
 	public async Task Execute()
 	{
-		YearlyCpiWebPage webPage = new();
+		using YearlyCpiWebPage webPage = new();
 
 		IEnumerable<YearlyCpiRecord> records = await webPage.EnumerateRecords();
 		Display(records);

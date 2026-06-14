@@ -1,9 +1,9 @@
 using System.Globalization;
 using HtmlAgilityPack;
 
-namespace DustInTheWind.Ins.Toolkit.Web;
+namespace DustInTheWind.Ins.Toolkit.Web.MonthlyAverageWage;
 
-public class MonthlyAverageWageHtmlDocument : IDisposable, IAsyncDisposable
+internal class MonthlyAverageWageHtmlDocument : IDisposable, IAsyncDisposable
 {
 	private static readonly CultureInfo CultureInfo = new("ro-RO");
 	private readonly Stream stream;

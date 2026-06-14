@@ -7,7 +7,7 @@ internal class MonthlyAverageWageUseCase
 {
 	public async Task Execute()
 	{
-		MonthlyAverageWageWebPage webpage = new();
+		using MonthlyAverageWageWebPage webpage = new();
 		IEnumerable<MonthlyAverageWageRecord> records = await webpage.EnumerateRecords();
 
 		IEnumerable<IGrouping<int, MonthlyAverageWageRecord>> groups = records
@@ -30,7 +30,13 @@ internal class MonthlyAverageWageUseCase
 		dataGrid.Columns.Add("Net", HorizontalAlignment.Right);
 
 		foreach (MonthlyAverageWageRecord record in records)
-			dataGrid.Rows.Add(record.MonthYear, record.AverageGrossWage, record.AverageNetWage);
+		{
+			string recordMonthYear = record.MonthYear.ToString();
+			string averageGrossWage = record.AverageGrossWage.ToString("N0");
+			string averageNetWage = record.AverageNetWage.ToString("N0");
+
+			dataGrid.Rows.Add(recordMonthYear, averageGrossWage, averageNetWage);
+		}
 
 		dataGrid.Display();
 	}

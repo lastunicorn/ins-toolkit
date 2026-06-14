@@ -7,7 +7,7 @@ internal class QuarterlyCpiUseCase
 {
 	public async Task Execute()
 	{
-		QuarterlyCpiWebPage webPage = new();
+		using QuarterlyCpiWebPage webPage = new();
 
 		IEnumerable<QuarterlyCpiRecord> records = await webPage.EnumerateRecords();
 		Display(records);

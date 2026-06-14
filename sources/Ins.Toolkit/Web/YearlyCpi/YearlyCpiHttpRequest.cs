@@ -1,25 +1,16 @@
-using System.Net;
+﻿namespace DustInTheWind.Ins.Toolkit.Web.YearlyCpi;
 
-namespace DustInTheWind.Ins.Toolkit.Web;
-
-public class MonthlyAverageWageWebPageRequest
+internal class YearlyCpiHttpRequest
 {
 	private readonly Uri uri;
 
-	public MonthlyAverageWageWebPageRequest(Uri uri)
+	public YearlyCpiHttpRequest(Uri uri)
 	{
 		this.uri = uri ?? throw new ArgumentNullException(nameof(uri));
 	}
 
-	public async Task<MonthlyAverageWageHtmlDocument> Execute()
+	public HttpRequestMessage ToHttpRequestMessage()
 	{
-		ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
-
-		HttpClient httpClient = new(new HttpClientHandler
-		{
-			AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
-		});
-
 		HttpRequestMessage httpRequestMessage = new(HttpMethod.Get, uri);
 
 		httpRequestMessage.Headers.Add("Host", "insse.ro");
@@ -38,12 +29,6 @@ public class MonthlyAverageWageWebPageRequest
 		httpRequestMessage.Headers.Add("Pragma", "no-cache");
 		httpRequestMessage.Headers.Add("Cache-Control", "no-cache");
 
-		HttpResponseMessage httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
-
-		if (!httpResponseMessage.IsSuccessStatusCode)
-			throw new Exception($"Failed to retrieve the inflation values from the web. Status code: {httpResponseMessage.StatusCode}");
-
-		Stream stream = await httpResponseMessage.Content.ReadAsStreamAsync();
-		return new MonthlyAverageWageHtmlDocument(stream);
+		return httpRequestMessage;
 	}
 }
