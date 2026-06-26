@@ -1,11 +1,17 @@
 INS Toolkit
 ================================================================================
 
+v1.4.0
+--------------------------------------------------------------------------------
+[new   ] Generate and publish a symbol package (.snupkg).
+
+
 v1.3.0
 --------------------------------------------------------------------------------
 [fix   ] Fixed parsing the decimal numbers that are randomly using "," or "."
 [fix   ] Fixed CPI functions wrongfully returning inflation rate values instead
          of CPI values.
+
 
 v1.2.0 (breaking change)
 --------------------------------------------------------------------------------
@@ -15,9 +21,11 @@ v1.2.0 (breaking change)
 [new   ] Added logic to parse the yearly and montly average wage web page from
          'insse.ro'.
 
+
 v1.1.0
 --------------------------------------------------------------------------------
 [new   ] Added URL as parameter for the web page classes.
+
 
 v1.0.0
 --------------------------------------------------------------------------------
