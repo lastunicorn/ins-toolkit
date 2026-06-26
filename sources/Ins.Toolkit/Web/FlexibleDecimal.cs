@@ -49,20 +49,20 @@ internal readonly record struct FlexibleDecimal
 		}
 
 		bool success = decimal.TryParse(
-				normalized,
-				NumberStyles.Number,
-				CultureInfo.InvariantCulture,
-				out decimal d);
+			normalized,
+			NumberStyles.Number,
+			CultureInfo.InvariantCulture,
+			out decimal d);
 
 		result = new FlexibleDecimal(d);
 		return success;
 	}
-	
- 
+
+
 	// -----------------------------------------------------------------------
 	// Private: normalize to invariant format (dot as decimal separator)
 	// -----------------------------------------------------------------------
- 
+
 	/// <summary>
 	/// Returns the string with a single '.' as the decimal separator, or
 	/// null if the input is not parseable.
@@ -79,28 +79,28 @@ internal readonly record struct FlexibleDecimal
 	/// </summary>
 	private static string Normalize(string value)
 	{
-		int lastDot   = value.LastIndexOf('.');
+		int lastDot = value.LastIndexOf('.');
 		int lastComma = value.LastIndexOf(',');
- 
+
 		if (lastDot >= 0 && lastComma >= 0)
 		{
 			// Both present: rightmost is the decimal separator.
 			return lastComma > lastDot
-				? value.Replace(".", "").Replace(',', '.')   // "1.234,56"
-				: value.Replace(",", "");                    // "1,234.56"
+				? value.Replace(".", "").Replace(',', '.') // "1.234,56"
+				: value.Replace(",", ""); // "1,234.56"
 		}
- 
+
 		if (lastComma >= 0)
 		{
-			int commaCount      = CountChar(value, ',');
+			int commaCount = CountChar(value, ',');
 			int digitsAfterComma = value.Length - lastComma - 1;
- 
+
 			if (commaCount > 1 || digitsAfterComma == 3)
-				return value.Replace(",", "");   // thousands separator
- 
-			return value.Replace(',', '.');      // decimal separator
+				return value.Replace(",", ""); // thousands separator
+
+			return value.Replace(',', '.'); // decimal separator
 		}
- 
+
 		// Only dots or no separator — invariant already.
 		return value;
 	}

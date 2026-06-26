@@ -33,7 +33,7 @@ internal class YearlyAverageWageUseCase
 			string averageNetWage = record.AverageNetWage.HasValue
 				? record.AverageNetWage.Value.ToString("N0")
 				: string.Empty;
-			
+
 			dataGrid.Rows.Add(year, averageGrossWage, averageNetWage);
 		}
 

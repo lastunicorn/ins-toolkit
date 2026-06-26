@@ -28,7 +28,7 @@ internal class YearlyAverageWageHttpRequest
 		httpRequestMessage.Headers.Add("Priority", "u=0, i");
 		httpRequestMessage.Headers.Add("Pragma", "no-cache");
 		httpRequestMessage.Headers.Add("Cache-Control", "no-cache");
-		
+
 		return httpRequestMessage;
 	}
 }
